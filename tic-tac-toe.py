@@ -20,6 +20,7 @@ def has_won(player):
 		(1, 4, 7),
 		(2, 5, 8),
 		(0, 4, 8),
+		(2, 4, 6),
 	]
 	# return true if a winning line has all x's or all o's
 	return any(all(board[index] == player for index in line) for line in winning_lines)
@@ -38,7 +39,7 @@ def play_game():
 			continue
 
 		square = int(choice) - 1
-		if board[square] != "":
+		if board[square] != " ":
 			print("That square is already taken.")
 			continue
 
