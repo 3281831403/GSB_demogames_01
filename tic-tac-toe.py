@@ -38,7 +38,7 @@ def play_game():
 			continue
 
 		square = int(choice) - 1
-		if board[square] != "":
+		if board[square] != " ":
 			print("That square is already taken.")
 			continue
 
