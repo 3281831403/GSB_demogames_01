@@ -28,21 +28,32 @@ def has_won(player):
 def play_game():
 	print(f"Square labels reference:\n 1 | 2 | 3 \n---+---+---\n 4 | 5 | 6 \n---+---+---\n 7 | 8 | 9 ")
 	player = "X"
+	moves = 0
 
-	for turn in range(9):
+	while moves < 9:
 		print_board()
 		choice = input(f"Player {player}, choose a square (1-9): ")
 
-		if not choice.isdigit() or not 1 <= int(choice) <= 9:
+		if not choice.isdigit():
 			print("Please enter a number from 1 to 9.")
 			continue
 
-		square = int(choice) - 1
-		if board[square] != "":
+		try:
+			square = int(choice) - 1
+		except ValueError:
+			print("Please enter a number from 1 to 9.")
+			continue
+
+		if not 0 <= square <= 8:
+			print("Please enter a number from 1 to 9.")
+			continue
+
+		if board[square] != " ":
 			print("That square is already taken.")
 			continue
 
 		board[square] = player
+		moves += 1
 
 		if has_won(player):
 			print_board()
